@@ -1,9 +1,17 @@
+"use client";
+import { motion } from "framer-motion";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-20">
 
       {/* HERO */}
-      <section className="text-center mb-24">
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-24"
+      >
         <h1 className="text-5xl md:text-6xl font-bold">Vijay P A</h1>
         <p className="mt-6 text-xl text-gray-400">
           Software Developer | Java | Full Stack | AI Projects
@@ -16,7 +24,8 @@ export default function Home() {
         >
           Download Resume
         </a>
-      </section>
+      </motion.section>
+
 
       {/* ABOUT */}
       <section className="max-w-3xl mx-auto text-center mb-24">
