@@ -1,12 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
+import AnimatedBackground from "./components/AnimatedBackground";
+import ProfileOrbitalCard from "./components/ProfileOrbitalCard";
+import SkillsSwitcher from "./components/SkillsSwitcher";
+import ProjectCard from "./components/ProjectCard";
 import CursorGlow from "./components/CursorGlow";
 import AIAssistant from "./components/AIAssistant";
-import TiltCard from "./components/TiltCard";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
@@ -17,10 +19,8 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black text-white overflow-hidden">
 
-      {/* 🌌 BACKGROUND */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e3a8a,#000)] opacity-80" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#7c3aed,#000)] opacity-40" />
-
+      {/* 🌌 Animated Background */}
+      <AnimatedBackground />
       <CursorGlow />
 
       <div className="relative z-10 px-6">
@@ -34,7 +34,7 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="grid md:grid-cols-2 gap-12 items-center max-w-6xl"
           >
-            {/* TEXT */}
+            {/* LEFT TEXT */}
             <div>
               <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 Vijay P A
@@ -67,20 +67,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* IMAGE */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden
-              border border-white/20 shadow-[0_0_60px_rgba(124,58,237,0.4)]"
-            >
-              <Image
-                src="/profile.png"
-                alt="Vijay P A"
-                fill
-                className="object-cover"
-                priority
-              />
-            </motion.div>
+            {/* RIGHT PROFILE CARD */}
+            <ProfileOrbitalCard />
           </motion.div>
         </section>
 
@@ -112,31 +100,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              "Java",
-              "Python",
-              "JavaScript",
-              "React",
-              "Next.js",
-              "Node.js",
-              "FastAPI",
-              "MongoDB",
-              "MySQL",
-              "AI / ML",
-              "Prompt Engineering",
-              "System Design",
-            ].map((skill) => (
-              <TiltCard key={skill}>
-                <div className="rounded-2xl py-6 text-center font-semibold
-                  backdrop-blur-xl bg-white/5 border border-white/10
-                  hover:border-purple-500 transition">
-                  {skill}
-                </div>
-              </TiltCard>
-            ))}
-          </div>
+          <SkillsSwitcher />
         </motion.section>
 
         {/* 🚀 PROJECTS */}
@@ -152,32 +116,26 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-center mb-12">Projects</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Online Voting Platform",
-                desc: "Secure voting system with authentication, real-time tracking, and fraud prevention.",
-                tech: "React • MySQL • Security",
-              },
-              {
-                title: "AI Symptom Analyzer Bot",
-                desc: "NLP-powered chatbot that analyzes symptoms and provides medical insights.",
-                tech: "FastAPI • NLP • AI",
-              },
-              {
-                title: "AI Mock Interview Platform",
-                desc: "AI-driven interview simulation with voice interaction and aptitude analysis.",
-                tech: "Next.js • AI • Firebase",
-              },
-            ].map((p) => (
-              <TiltCard key={p.title}>
-                <div className="rounded-2xl p-6 bg-gradient-to-br from-white/10 to-white/5
-                  border border-white/10 backdrop-blur-xl">
-                  <h3 className="text-xl font-bold mb-3">{p.title}</h3>
-                  <p className="text-gray-300 mb-4">{p.desc}</p>
-                  <p className="text-sm text-gray-400">{p.tech}</p>
-                </div>
-              </TiltCard>
-            ))}
+            <ProjectCard
+              title="Online Voting Platform"
+              desc="Secure voting system with authentication, real-time tracking, and fraud prevention."
+              tech="React • MySQL • Security"
+              image="/projects/voting.png"
+            />
+
+            <ProjectCard
+              title="AI Symptom Analyzer Bot"
+              desc="NLP-powered chatbot that analyzes symptoms and provides medical insights."
+              tech="FastAPI • NLP • AI"
+              image="/projects/symptom.png"
+            />
+
+            <ProjectCard
+              title="AI Mock Interview Platform"
+              desc="AI-driven interview simulation with voice interaction and aptitude analysis."
+              tech="Next.js • AI • Firebase"
+              image="/projects/interview.png"
+            />
           </div>
         </motion.section>
 
