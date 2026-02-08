@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
@@ -12,70 +13,85 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black text-white overflow-hidden">
 
-      {/* 🌌 Cosmic Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e3a8a,#000)] opacity-70" />
-      <div className="absolute inset-0 bg-[url('/stars.png')] opacity-10" />
+      {/* 🌌 BACKGROUND */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e3a8a,#000)] opacity-80" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#7c3aed,#000)] opacity-40" />
 
       <div className="relative z-10 px-6">
 
         {/* 🚀 HERO */}
-        <section className="min-h-screen flex flex-col justify-center items-center text-center">
+        <section className="min-h-screen flex items-center justify-center">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 1 }}
-            className="space-y-6"
+            className="grid md:grid-cols-2 gap-12 items-center max-w-6xl"
           >
-            {/* Avatar Placeholder */}
-            <div className="w-36 h-36 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1 mx-auto">
-              <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-4xl font-bold">
-                VP
+            {/* TEXT */}
+            <div>
+              <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                Vijay P A
+              </h1>
+
+              <p className="mt-6 text-xl text-gray-300">
+                Software Developer • Full Stack • AI Builder • Prompt Engineer
+              </p>
+
+              <p className="mt-6 text-gray-400 max-w-xl">
+                I design and build intelligent, scalable, and visually powerful
+                applications using modern full-stack technologies, AI/ML, and
+                advanced prompt engineering.
+              </p>
+
+              <div className="mt-8 flex gap-4">
+                <a
+                  href="/Vijay_PA_Resume.pdf"
+                  target="_blank"
+                  className="px-6 py-3 rounded-xl bg-white text-black font-semibold hover:scale-105 transition"
+                >
+                  Download Resume
+                </a>
+                <a
+                  href="#projects"
+                  className="px-6 py-3 rounded-xl border border-white/30 hover:bg-white/10 transition"
+                >
+                  View Projects
+                </a>
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Vijay P A
-            </h1>
-
-            <p className="text-xl text-gray-300 max-w-xl mx-auto">
-              Software Developer • Full Stack • AI Builder • Prompt Engineer
-            </p>
-
-            <div className="flex gap-4 justify-center">
-              <a
-                href="/Vijay_PA_Resume.pdf"
-                target="_blank"
-                className="px-6 py-3 rounded-xl bg-white text-black font-semibold hover:scale-105 transition"
-              >
-                Download Resume
-              </a>
-              <a
-                href="#projects"
-                className="px-6 py-3 rounded-xl border border-white/30 hover:bg-white/10 transition"
-              >
-                View Projects
-              </a>
-            </div>
+            {/* IMAGE */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden border border-white/20 shadow-[0_0_60px_rgba(124,58,237,0.4)]"
+            >
+              <Image
+                src="/profile.png"
+                alt="Vijay P A"
+                fill
+                className="object-cover"
+                priority
+              />
+            </motion.div>
           </motion.div>
         </section>
 
         {/* 🧠 ABOUT */}
-        <section className="max-w-4xl mx-auto py-32">
+        <section className="max-w-4xl mx-auto py-32 text-center">
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center"
           >
             <h2 className="text-4xl font-bold mb-6">About Me</h2>
             <p className="text-gray-300 text-lg leading-relaxed">
-              I’m a Computer Science Engineering student who loves building
-              intelligent systems, scalable web platforms, and AI-powered tools.
-              I focus on clean architecture, modern UI, and solving real problems
-              using Full Stack development, AI/ML, and Prompt Engineering.
+              I’m a Computer Science Engineering student passionate about building
+              real-world software products. I specialize in Full Stack
+              Development, AI-powered systems, and Prompt Engineering to extract
+              high-quality intelligence from modern LLMs.
             </p>
           </motion.div>
         </section>
@@ -84,7 +100,7 @@ export default function Home() {
         <section className="max-w-6xl mx-auto py-32">
           <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               "Java",
               "Python",
@@ -102,7 +118,9 @@ export default function Home() {
               <motion.div
                 key={skill}
                 whileHover={{ scale: 1.08 }}
-                className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl py-6 text-center font-semibold"
+                className="rounded-2xl py-6 text-center font-semibold
+                backdrop-blur-xl bg-white/5 border border-white/10
+                hover:border-purple-500 transition"
               >
                 {skill}
               </motion.div>
@@ -128,14 +146,15 @@ export default function Home() {
               },
               {
                 title: "AI Mock Interview Platform",
-                desc: "Voice-based AI interviews, aptitude training, and GD simulation.",
+                desc: "AI-driven interview simulation with voice interaction and aptitude analysis.",
                 tech: "Next.js • AI • Firebase",
               },
             ].map((p) => (
               <motion.div
                 key={p.title}
-                whileHover={{ y: -10 }}
-                className="rounded-2xl p-6 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 backdrop-blur-xl"
+                whileHover={{ y: -12 }}
+                className="rounded-2xl p-6 bg-gradient-to-br from-white/10 to-white/5
+                border border-white/10 backdrop-blur-xl"
               >
                 <h3 className="text-xl font-bold mb-3">{p.title}</h3>
                 <p className="text-gray-300 mb-4">{p.desc}</p>
@@ -149,7 +168,7 @@ export default function Home() {
         <section className="py-32 text-center">
           <h2 className="text-4xl font-bold mb-8">Let’s Connect</h2>
 
-          <div className="flex justify-center gap-6 text-2xl">
+          <div className="flex justify-center gap-8 text-3xl">
             <a href="https://github.com/Vijaysmvec" target="_blank"><FaGithub /></a>
             <a href="https://linkedin.com/in/mr-vijay-pa" target="_blank"><FaLinkedin /></a>
             <a href="mailto:vijayanandhan2005@gmail.com"><FaEnvelope /></a>
