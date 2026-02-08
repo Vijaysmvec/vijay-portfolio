@@ -1,14 +1,15 @@
 "use client";
-import CursorGlow from "./components/CursorGlow";
-import AIAssistant from "./components/AIAssistant";
-
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
+import CursorGlow from "./components/CursorGlow";
+import AIAssistant from "./components/AIAssistant";
+import TiltCard from "./components/TiltCard";
+
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -16,11 +17,11 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-black text-white overflow-hidden">
 
-
-
       {/* 🌌 BACKGROUND */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e3a8a,#000)] opacity-80" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,#7c3aed,#000)] opacity-40" />
+
+      <CursorGlow />
 
       <div className="relative z-10 px-6">
 
@@ -69,7 +70,8 @@ export default function Home() {
             {/* IMAGE */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden border border-white/20 shadow-[0_0_60px_rgba(124,58,237,0.4)]"
+              className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden
+              border border-white/20 shadow-[0_0_60px_rgba(124,58,237,0.4)]"
             >
               <Image
                 src="/profile.png"
@@ -80,44 +82,35 @@ export default function Home() {
               />
             </motion.div>
           </motion.div>
-          <motion.section
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            viewport={{ once: true }}
-          >
-
         </section>
 
         {/* 🧠 ABOUT */}
-        <section className="max-w-4xl mx-auto py-32 text-center">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">About Me</h2>
-            <p className="text-gray-300 text-lg leading-relaxed">
-              I’m a Computer Science Engineering student passionate about building
-              real-world software products. I specialize in Full Stack
-              Development, AI-powered systems, and Prompt Engineering to extract
-              high-quality intelligence from modern LLMs.
-            </p>
-          </motion.div>
-          <motion.section
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            viewport={{ once: true }}
-          >
-
-
-        </section>
+        <motion.section
+          className="max-w-4xl mx-auto py-32 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-bold mb-6">About Me</h2>
+          <p className="text-gray-300 text-lg leading-relaxed">
+            I’m a Computer Science Engineering student passionate about building
+            real-world software products. I specialize in Full Stack Development,
+            AI-powered systems, and Prompt Engineering to extract high-quality
+            intelligence from modern LLMs.
+          </p>
+        </motion.section>
 
         {/* 🧩 SKILLS */}
-        <section className="max-w-6xl mx-auto py-32">
+        <motion.section
+          className="max-w-6xl mx-auto py-32"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-4xl font-bold text-center mb-12">Skills</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -135,28 +128,27 @@ export default function Home() {
               "Prompt Engineering",
               "System Design",
             ].map((skill) => (
-              <motion.div
-                key={skill}
-                whileHover={{ scale: 1.08 }}
-                className="rounded-2xl py-6 text-center font-semibold
-                backdrop-blur-xl bg-white/5 border border-white/10
-                hover:border-purple-500 transition"
-              >
-                {skill}
-              </motion.div>
-              <motion.section
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9 }}
-                viewport={{ once: true }}
-              >
-
+              <TiltCard key={skill}>
+                <div className="rounded-2xl py-6 text-center font-semibold
+                  backdrop-blur-xl bg-white/5 border border-white/10
+                  hover:border-purple-500 transition">
+                  {skill}
+                </div>
+              </TiltCard>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* 🚀 PROJECTS */}
-        <section id="projects" className="max-w-6xl mx-auto py-32">
+        <motion.section
+          id="projects"
+          className="max-w-6xl mx-auto py-32"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-4xl font-bold text-center mb-12">Projects</h2>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -177,26 +169,17 @@ export default function Home() {
                 tech: "Next.js • AI • Firebase",
               },
             ].map((p) => (
-              <motion.div
-                key={p.title}
-                whileHover={{ y: -12 }}
-                className="rounded-2xl p-6 bg-gradient-to-br from-white/10 to-white/5
-                border border-white/10 backdrop-blur-xl"
-              >
-                <h3 className="text-xl font-bold mb-3">{p.title}</h3>
-                <p className="text-gray-300 mb-4">{p.desc}</p>
-                <p className="text-sm text-gray-400">{p.tech}</p>
-              </motion.div>
-              <motion.section
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9 }}
-                viewport={{ once: true }}
-              >
-
+              <TiltCard key={p.title}>
+                <div className="rounded-2xl p-6 bg-gradient-to-br from-white/10 to-white/5
+                  border border-white/10 backdrop-blur-xl">
+                  <h3 className="text-xl font-bold mb-3">{p.title}</h3>
+                  <p className="text-gray-300 mb-4">{p.desc}</p>
+                  <p className="text-sm text-gray-400">{p.tech}</p>
+                </div>
+              </TiltCard>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* 📬 CONTACT */}
         <section className="py-32 text-center">
@@ -210,8 +193,8 @@ export default function Home() {
         </section>
 
       </div>
+
       <AIAssistant />
-      <CursorGlow />
     </main>
   );
 }
