@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Cosmic Cursor Glow */
+.cursor-glow {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(124,58,237,0.35), transparent 60%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  filter: blur(30px);
+}
+

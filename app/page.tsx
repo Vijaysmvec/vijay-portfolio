@@ -1,4 +1,7 @@
 "use client";
+import CursorGlow from "./components/CursorGlow";
+import AIAssistant from "./components/AIAssistant";
+
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -12,6 +15,8 @@ const fadeUp = {
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black text-white overflow-hidden">
+
+
 
       {/* 🌌 BACKGROUND */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e3a8a,#000)] opacity-80" />
@@ -75,6 +80,13 @@ export default function Home() {
               />
             </motion.div>
           </motion.div>
+          <motion.section
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            viewport={{ once: true }}
+          >
+
         </section>
 
         {/* 🧠 ABOUT */}
@@ -94,6 +106,14 @@ export default function Home() {
               high-quality intelligence from modern LLMs.
             </p>
           </motion.div>
+          <motion.section
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            viewport={{ once: true }}
+          >
+
+
         </section>
 
         {/* 🧩 SKILLS */}
@@ -124,6 +144,13 @@ export default function Home() {
               >
                 {skill}
               </motion.div>
+              <motion.section
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
+                viewport={{ once: true }}
+              >
+
             ))}
           </div>
         </section>
@@ -160,6 +187,13 @@ export default function Home() {
                 <p className="text-gray-300 mb-4">{p.desc}</p>
                 <p className="text-sm text-gray-400">{p.tech}</p>
               </motion.div>
+              <motion.section
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
+                viewport={{ once: true }}
+              >
+
             ))}
           </div>
         </section>
@@ -176,6 +210,8 @@ export default function Home() {
         </section>
 
       </div>
+      <AIAssistant />
+      <CursorGlow />
     </main>
   );
 }
